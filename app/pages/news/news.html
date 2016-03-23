@@ -1,0 +1,17 @@
+<ion-navbar *navbar>
+  <ion-title>FC EDA News</ion-title>
+</ion-navbar>
+
+<ion-content padding class="news">
+ 
+ <ion-list>
+    <ion-item *ngFor="#item of news.data" (click)="itemSelected(item)">
+      <ion-thumbnail item-left>
+        <img src="{{item.featured_image_thumbnail_url}}">
+      </ion-thumbnail>
+    <h2 [innerHTML]="item.title.rendered"></h2>
+    <span>{{item.date}}</span>
+  </ion-item>
+</ion-list>
+
+</ion-content>
