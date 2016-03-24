@@ -12,6 +12,6 @@
 
 	<ion-spinner [hidden]="dataLoaded"></ion-spinner>
 
-	<div [innerHtml]="table.data._body"></div>
+	<div [hidden]="!dataLoaded" [innerHtml]="table.data._body"></div>
   
 </ion-content>
