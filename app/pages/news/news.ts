@@ -11,9 +11,12 @@ export class NewsPage {
 
 	public news: Newsservice;
 	public nav: NavController;
+	public dataLoaded: Boolean;
 
 	constructor(news: Newsservice, nav: NavController) {
-		news.retrieveData();
+		news.retrieveData(() => {
+			this.dataLoaded = true;
+		});
 		this.news = news;
 		this.nav = nav;
 	}

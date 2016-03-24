@@ -9,5 +9,9 @@
 </ion-navbar>
 
 <ion-content padding class="table">
+
+	<ion-spinner [hidden]="dataLoaded"></ion-spinner>
+
+	<div [innerHtml]="table.data._body"></div>
   
 </ion-content>

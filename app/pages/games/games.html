@@ -9,6 +9,8 @@
 </ion-navbar>
 
 <ion-content padding class="games">
+
+	<ion-spinner [hidden]="dataLoaded"></ion-spinner>
 	
 	<div [innerHtml]="games.data._body"></div>
   

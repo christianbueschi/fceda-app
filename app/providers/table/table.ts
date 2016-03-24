@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class Gamesservice {
+export class Tableservice {
 
   private http: Http;
   private data: Object;
@@ -15,10 +15,10 @@ export class Gamesservice {
   }
 
   retrieveData(callback: Function) {
-    this.http.get('http://www.fceda.ch/app/tabelle.php')
+    this.http.get('http://www.fceda.ch/app/rangliste.php')
       .subscribe(
         data => this.data = data,
-        err => console.log('error while games loading'),
+        err => console.log('error while table loading'),
         () => callback()
       );
   }

@@ -14,10 +14,12 @@ import {Gamesservice} from '../../providers/games/games';
 export class GamesPage {
   
 	public games: Gamesservice;
+  public dataLoaded: Boolean;
 
 	constructor(games: Gamesservice) {
-		games.retrieveData();
+		games.retrieveData(() => {
+      this.dataLoaded = true;
+    });
 		this.games = games;
-		console.log(games);
   }
 }

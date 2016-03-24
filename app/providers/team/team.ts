@@ -4,21 +4,22 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class Gamesservice {
+export class Teamservice {
 
   private http: Http;
-  private data: Object;
+  private data: String;
 
   constructor(http: Http) {
     this.http = http;
-    this.data = Object;
+    this.data = null;
   }
 
   retrieveData(callback: Function) {
-    this.http.get('http://www.fceda.ch/app/tabelle.php')
+    this.http.get('http://www.fceda.ch/wp-json/wp/v2/team_member')
+      .map(response => response.json())
       .subscribe(
         data => this.data = data,
-        err => console.log('error while games loading'),
+        err => console.log('error loading team'),
         () => callback()
       );
   }

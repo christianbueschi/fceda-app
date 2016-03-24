@@ -14,10 +14,14 @@ export class Newsservice {
     this.data = null;
   }
 
-  retrieveData() {
+  retrieveData(callback: Function) {
     this.http.get('http://www.fceda.ch/wp-json/wp/v2/posts')
-    .map(response => response.json())
-    .subscribe(data => this.data = data);
+      .map(response => response.json())
+      .subscribe(
+        data => this.data = data,
+        err => console.log('error while loading news'),
+        () => callback()
+    );
   }
 
   getData() {

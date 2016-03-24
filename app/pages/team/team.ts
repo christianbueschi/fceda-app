@@ -1,17 +1,30 @@
 import {Page, NavController} from 'ionic-angular';
+import {Teamservice} from '../../providers/team/team';
+import {TeamdetailPage} from '../teamdetail/teamdetail';
 
-/*
-  Generated class for the TeamPage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Page({
-  templateUrl: 'build/pages/team/team.html',
+	templateUrl: 'build/pages/team/team.html',
+	providers: [Teamservice]
 })
 export class TeamPage {
-  
 
-  constructor() {
-  }
+	public team: Teamservice;
+	public dataLoaded: Boolean;
+	public nav: NavController;
+
+	constructor(team: Teamservice, nav: NavController) {
+		this.dataLoaded = false;
+		team.retrieveData(() => {
+			this.dataLoaded = true;
+		});
+		this.team = team;
+		this.nav = nav;
+	}
+
+	itemSelected(item: any) {
+		this.nav.push(TeamdetailPage, {
+	    	item: item
+     	});
+	}
 }
