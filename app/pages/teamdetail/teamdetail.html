@@ -11,4 +11,22 @@
 <ion-content padding class="newsdetail">
 	<h1 [innerHTML]="item.title.rendered"></h1>
 	<img src="{{item.acf.image.sizes.large}}">
+	<table>
+		<tr>
+        <td>Position</td>
+        <td>{{item.acf.position}}</td>
+      </tr>
+      <tr>
+        <td>Rückennummer</td>
+        <td>{{item.acf.number}}</td>
+      </tr>
+      <tr>
+        <td>Geburtsdatum</td>
+        <td>{{item.acf.birthday}}</td>
+      </tr>
+      <tr>
+        <td>Beim FC EDA seit</td>
+        <td>{{item.acf.in_club_since}}</td>
+      </tr>
+    </table>
 </ion-content>
