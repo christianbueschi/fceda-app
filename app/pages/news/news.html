@@ -11,8 +11,9 @@
       	<ion-thumbnail item-left>
   	    	<img src="{{item.featured_image_thumbnail_url}}">
       		</ion-thumbnail>
-    		<h2 [innerHTML]="item.title.rendered"></h2>
-    		<span>{{item.date}}</span>
+    		<h2 [innerHTML]="item.title.rendered" class="title"></h2>
+    		<span class="date">{{item.date | dateFormat}}</span>
+        <p [innerHTML]="item.excerpt.rendered"></p>
   		</ion-item>
 	</ion-list>
 	
