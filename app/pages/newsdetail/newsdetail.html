@@ -10,6 +10,7 @@
 
 <ion-content padding class="newsdetail">
 	<h1 [innerHTML]="item.title.rendered"></h1>
+	<p>{{item.date | dateFormat}}</p>
 	<img src="{{item.featured_image_large_url}}">
 	<div [innerHTML]="item.content.rendered"></div>
   

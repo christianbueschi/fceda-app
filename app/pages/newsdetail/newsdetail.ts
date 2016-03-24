@@ -1,4 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
+import {DateFormat} from '../../pipes/dateformat/dateformat';
 
 /*
   Generated class for the NewsdetailPage page.
@@ -8,6 +9,7 @@ import {Page, NavController, NavParams} from 'ionic-angular';
 */
 @Page({
   templateUrl: 'build/pages/newsdetail/newsdetail.html',
+  pipes: [DateFormat]
 })
 export class NewsdetailPage {
 
