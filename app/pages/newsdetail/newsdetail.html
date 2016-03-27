@@ -8,10 +8,10 @@
   <ion-title></ion-title>
 </ion-navbar>
 
-<ion-content padding class="newsdetail">
-	<h1 [innerHTML]="item.title.rendered"></h1>
-	<p>{{item.date | dateFormat}}</p>
-	<img src="{{item.featured_image_large_url}}">
-	<div [innerHTML]="item.content.rendered"></div>
+<ion-content padding class="p-newsdetail">
+	<img src="{{item.featured_image_large_url}}" class="p-newsdetail__image">
+	<h1 [innerHTML]="item.title.rendered" class="p-newsdetail__title"></h1>
+	<p class="p-newsdetail__date">{{item.date | dateFormat}}</p>
+	<div [innerHTML]="item.content.rendered" class="p-newsdetail__content"></div>
   
 </ion-content>

@@ -1,20 +1,19 @@
 <ion-navbar *navbar>
-  <ion-title>FC EDA News</ion-title>
+  <ion-title>FC EDA</ion-title>
 </ion-navbar>
 
-<ion-content padding class="news">
+<ion-content padding class="p-news">
 
 	<ion-spinner [hidden]="dataLoaded"></ion-spinner>
  
- 	<ion-list>
-    	<ion-item *ngFor="#item of news.data" (click)="itemSelected(item)">
-      	<ion-thumbnail item-left>
-  	    	<img src="{{item.featured_image_thumbnail_url}}">
-      		</ion-thumbnail>
-    		<h2 [innerHTML]="item.title.rendered" class="title"></h2>
-    		<span class="date">{{item.date | dateFormat}}</span>
-        <p [innerHTML]="item.excerpt.rendered"></p>
-  		</ion-item>
-	</ion-list>
+ 	<ul class="p-news__list">
+    	<li class="p-news__list-item" *ngFor="#item of news.data" (click)="itemSelected(item)">
+  	    <img class="p-news__image" src="{{item.featured_image_large_url}}">
+        <div class="p-news__textwrap">
+    		  <h2 [innerHTML]="item.title.rendered" class="p-news__title"></h2>
+    		  <span class="p-news__date">{{item.date | dateFormat}}</span>
+        </div>
+  		</li>
+	</ul>
 	
 </ion-content>
