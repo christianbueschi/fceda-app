@@ -10,7 +10,7 @@
 
 <ion-content padding class="newsdetail">
 	<h1 [innerHTML]="item.title.rendered"></h1>
-	<img src="{{item.acf.image.sizes.large}}">
+	<img *ngIf="item.acf.image" src="{{item.acf.image.sizes.large}}">
 	<table>
 		<tr>
         <td>Position</td>
