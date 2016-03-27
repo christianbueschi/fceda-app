@@ -21,7 +21,6 @@ export class NewsPage {
 		});
 		this.news = news;
 		this.nav = nav;
-		console.log(news);
 	}
 
 	itemSelected(item: any) {
