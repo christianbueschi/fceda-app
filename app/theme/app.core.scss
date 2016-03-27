@@ -14,3 +14,13 @@
 @import "../pages/liveticker/liveticker.scss";
 @import "../pages/newsdetail/newsdetail.scss";
 @import "../pages/teamdetail/teamdetail.scss";
+
+
+
+///////// GLOBALS ///////// 
+
+ion-spinner {
+	display: block;
+	margin: 0 auto;
+	margin-top: 50%;
+}
