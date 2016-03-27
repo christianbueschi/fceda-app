@@ -1,3 +1,20 @@
-.newsdetail {
+.p-newsdetail {
+
+	&__image {
+
+	}
+
+	&__title {
+		font-size: 2rem;
+	}
+
+	&__date {
+		color: $light;
+	}
+
+	&__content {
+		font-size: 1.6rem;
+		line-height: 2rem;
+	}
 
 }

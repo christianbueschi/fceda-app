@@ -1,3 +1,18 @@
-.table {
+.p-table {
+
+
+	// Table Overrides
+	h1 {
+		display: none;
+	}
+
+	.tt {
+		font-weight: bold;	
+	}
+
+	.nisBookmark,
+	.nisTitel {
+		display: none
+	}
 
 }
