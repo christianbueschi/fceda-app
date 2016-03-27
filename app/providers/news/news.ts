@@ -15,7 +15,7 @@ export class Newsservice {
   }
 
   retrieveData(callback: Function) {
-    this.http.get('http://www.fceda.ch/wp-json/wp/v2/posts')
+    this.http.get('http://www.fceda.ch/wp-json/wp/v2/posts?per_page=25')
       .map(response => response.json())
       .subscribe(
         data => this.data = data,

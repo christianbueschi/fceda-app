@@ -15,7 +15,7 @@ export class Teamservice {
   }
 
   retrieveData(callback: Function) {
-    this.http.get('http://www.fceda.ch/wp-json/wp/v2/team_member')
+    this.http.get('http://www.fceda.ch/wp-json/wp/v2/team_member?per_page=30')
       .map(response => response.json())
       .subscribe(
         data => this.data = data,
