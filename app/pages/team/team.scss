@@ -1,3 +1,11 @@
-.team {
+.p-team {
+
+	&__item {
+		padding-left: 0;
+	}
+
+	&__sub {
+		@extend .t-sub;
+	}
 
 }

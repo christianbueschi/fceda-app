@@ -7,12 +7,14 @@
 	<ion-spinner [hidden]="dataLoaded"></ion-spinner>
  
  	<ul class="p-news__list">
-    	<li class="p-news__list-item" *ngFor="#item of news.data" (click)="itemSelected(item)">
-  	    <img class="p-news__image" src="{{item.featured_image_large_url}}">
-        <div class="p-news__textwrap">
-    		  <h2 [innerHTML]="item.title.rendered" class="p-news__title"></h2>
-    		  <span class="p-news__date">{{item.date | dateFormat}}</span>
-        </div>
+    	<li class="p-news__list-item" *ngFor="#item of news.data">
+        <button (click)="itemSelected(item)" class="p-news__button">
+          <img class="p-news__image" src="{{item.featured_image_large_url}}">
+          <div class="p-news__textwrap">
+    		    <h2 [innerHTML]="item.title.rendered" class="p-news__title"></h2>
+    		    <span class="p-news__date">{{item.date | dateFormat}}</span>
+          </div>
+        </button>
   		</li>
 	</ul>
 	
