@@ -1,3 +1,43 @@
-.games {
+.p-games {
+
+	.nisBookmark {
+		display: none
+	}
+
+	td {
+		@extend .t-copy--small;
+	}
+
+	// date
+	.tt {
+		@extend .t-title--small;
+		padding: 20px 0 5px 0;
+		border-bottom: 1px solid $border;
+		margin-bottom: 5px;
+	}
+
+	.nisCupSpiel {
+
+		td {
+			&:first-child {
+				width: 15%;
+			}
+			&:nth-child(2) {
+				width: 40%;
+			}
+			&:nth-child(3) {
+				width: 5%;
+			}
+			&:nth-child(4) {
+				width: 40%;
+			}
+		}
+	}
+
+	.nisCupInfo {
+		td {
+			font-size: 1rem;
+		}
+	}
 
 }

@@ -1,13 +1,56 @@
 .p-table {
 
 
+	td {
+		@extend .t-copy--small;
+		
+		a {
+			color: black;
+			text-decoration: none;
+		}
+	}
+
+
 	// Table Overrides
 	h1 {
 		display: none;
 	}
 
+	// date
 	.tt {
-		font-weight: bold;	
+		@extend .t-title--small;
+		padding-top: 10px;
+	}
+
+	.nisNaechsteSpiele {
+		tr {
+
+		}
+
+		td {
+			&:first-child {
+				width: 40%;
+			}
+			&:nth-child(2) {
+				width: 5%;
+			}
+			&:nth-child(3) {
+				width: 40%;
+			}
+			&:nth-child(4) {
+				width: 15%;
+			}
+		}
+	}
+
+	.nisRangliste {
+		margin-top: 40px;
+
+		td {
+			b {
+				color: map-get($colors, "primary");
+			}
+		}
 	}
 
 	.nisBookmark,

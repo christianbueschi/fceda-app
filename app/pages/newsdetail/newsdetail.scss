@@ -5,10 +5,11 @@
 	}
 
 	&__title {
-		font-size: 2rem;
+		@extend .t-title;
 	}
 
 	&__date {
+		@extend .t-sub;
 		color: $light;
 	}
 
