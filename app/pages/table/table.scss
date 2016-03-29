@@ -2,7 +2,7 @@
 
 
 	td {
-		@extend .t-copy--small;
+		@extend .t-copy--table;
 		
 		a {
 			color: black;
@@ -47,9 +47,14 @@
 		margin-top: 40px;
 
 		td {
+			padding: 5px 0;
 			b {
 				color: map-get($colors, "primary");
 			}
+		}
+
+		tr {
+			border-bottom: 1px solid #c8c7cc;
 		}
 	}
 
