@@ -8,6 +8,22 @@
   <ion-title>Liveticker</ion-title>
 </ion-navbar>
 
-<ion-content padding class="liveticker">
+<ion-content padding class="p-liveticker">
+  
+  <ion-spinner [hidden]="dataLoaded"></ion-spinner>
+  
+  <section *ngIf="notifications.length === 0 && dataLoaded === true">
+    <p>Momentan gibt es keinen Liveticker.</p>
+  </section>
+  
+  <section *ngIf="notifications.length > 0">
+  	<ul class="p-liveticker__list">
+    	<li class="p-liveticker__list-item" *ngFor="#item of notifications">
+        <span *ngIf="item.minute" class="p-liveticker__minute">{{item.minute}}</span>
+        <h3 class="p-liveticker__title">{{item.text}}</h3>
+        <img class="p-liveticker__image"src="{{item.image}}" alt="">
+  		</li>
+	</ul>  
+  </section>
   
 </ion-content>
