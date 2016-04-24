@@ -7,7 +7,8 @@
     }
     
     &__list-item {
-        padding-left: 35px; 
+        padding-left: 30px;
+        margin-left: 10px;
         border-left: 1px solid $border;
         position: relative;
         min-height: 50px;
@@ -17,6 +18,7 @@
             border-bottom: 1px solid $border;
             border-left: none;
             padding-left: 0;
+            margin-left: 0;
             min-height: auto; 
             margin-bottom: 20px;
             
@@ -58,6 +60,7 @@
         line-height: 2.5rem;
         padding-top: 2px;
         margin-top: 0;
+        margin-bottom: 5px;
     }  
     
     &__image {
