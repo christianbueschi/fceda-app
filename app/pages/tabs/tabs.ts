@@ -33,7 +33,7 @@ export class TabsPage {
    
       window.plugins.OneSignal.init(
         "0e694cca-15b1-42b5-817e-151c9f3a3d70",
-        {googleProjectNumber: "703322744261"},
+        {googleProjectNumber: "471832424204"},
         this.onNotificationOpened.bind(this)
       );
   
