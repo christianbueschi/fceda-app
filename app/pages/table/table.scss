@@ -1,6 +1,5 @@
 .p-table {
 
-
 	td {
 		@extend .t-copy--table;
 		
@@ -29,16 +28,22 @@
 
 		td {
 			&:first-child {
-				width: 40%;
+				width: 42%;
+				padding-right: 5px;
+				max-width: 0;
+				@include ellipsis();
 			}
 			&:nth-child(2) {
 				width: 5%;
 			}
 			&:nth-child(3) {
-				width: 40%;
+				width: 42%;
+				padding-right: 5px;
+				max-width: 0;
+				@include ellipsis();
 			}
 			&:nth-child(4) {
-				width: 15%;
+				width: 10%;
 			}
 		}
 	}
@@ -48,6 +53,13 @@
 
 		td {
 			padding: 5px 0;
+			
+			&:nth-child(2) {
+				@include ellipsis();
+				width: 50%;
+				padding-right: 5px;
+				max-width: 0;
+			}
 			b {
 				color: map-get($colors, "primary");
 			}
