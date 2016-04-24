@@ -44,7 +44,7 @@ export class TabsPage {
   }
 
   onNotificationOpened() {
-    this.nav.push(LivetickerPage);
+    //this.nav.push(LivetickerPage);
   }
 
 
