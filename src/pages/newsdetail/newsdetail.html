@@ -1,0 +1,19 @@
+<!--
+  Generated template for the NewsdetailPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-navbar>
+  <ion-title></ion-title>
+</ion-navbar>
+</ion-header>
+
+<ion-content padding class="p-newsdetail">
+	<img src="{{item.featured_image_large_url}}" class="p-newsdetail__image">
+	<h1 [innerHTML]="item.title.rendered" class="p-newsdetail__title"></h1>
+	<p class="p-newsdetail__date">{{item.date | date}}</p>
+	<div [innerHTML]="item.content.rendered" class="p-newsdetail__content"></div>
+  
+</ion-content>

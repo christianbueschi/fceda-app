@@ -1,0 +1,49 @@
+.p-games {
+
+	.nisBookmark {
+		display: none
+	}
+
+	td {
+		@extend .t-copy--table !optional;
+	}
+
+	// date
+	.tt {
+		@extend .t-title--small !optional;
+		padding: 20px 0 5px 0;
+		border-bottom: 1px solid $border;
+		margin-bottom: 5px;
+	}
+
+	.nisCupSpiel {
+
+		td {
+			&:first-child {
+				width: 15%;
+			}
+			&:nth-child(2) {
+				width: 40%;
+				@include ellipsis();
+				padding-right: 5px;
+				max-width: 0;
+			}
+			&:nth-child(3) {
+				width: 5%;
+			}
+			&:nth-child(4) {
+				width: 40%;
+				@include ellipsis();
+				padding-right: 5px;
+				max-width: 0;
+			}
+		}
+	}
+
+	.nisCupInfo {
+		td {
+			font-size: 1rem;
+		}
+	}
+
+}

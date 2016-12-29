@@ -1,0 +1,34 @@
+<!--
+  Generated template for the LivetickerPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-navbar>
+  <ion-title>Liveticker</ion-title>
+</ion-navbar>
+</ion-header>
+
+<ion-content padding class="p-liveticker">
+  
+  <ion-spinner [hidden]="dataLoaded"></ion-spinner>
+  
+  <section *ngIf="notifications.length === 0 && dataLoaded === true">
+    <p>Momentan gibt es kein Spiel im Liveticker.</p>
+  </section>
+  <section *ngIf="notifications.length > 0">
+  	<ul class="p-liveticker__list">
+    	<li class="p-liveticker__list-item" *ngFor="let item of notifications">
+        <span *ngIf="item.minute" class="p-liveticker__minute">{{item.minute}}</span>
+        <h3 class="p-liveticker__title">{{item.text}}</h3>
+        <img *ngIf="item.image" class="p-liveticker__image"src="{{item.image}}" alt="">
+        <video *ngIf="item.video" controls class="p-liveticker__video">
+  		    <source src="{{item.video}}">
+		      Your browser does not support the video tag.
+	      </video>
+  		</li>
+	</ul>  
+  </section>
+  
+</ion-content>

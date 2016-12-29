@@ -1,38 +1,46 @@
 {
+  "name": "fceda",
+  "author": "Christian Bueschi",
+  "private": true,
+  "scripts": {
+    "clean": "ionic-app-scripts clean",
+    "build": "ionic-app-scripts build",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve"
+  },
   "dependencies": {
-    "angular2": "2.0.0-beta.15",
-    "es6-promise": "3.0.2",
-    "es6-shim": "0.35.0",
-    "feathers-client": "^1.1.0",
-    "ionic-angular": "2.0.0-beta.6",
-    "ionic-native": "^1.1.0",
-    "ionicons": "3.0.0-alpha.3",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.6.12"
+    "@angular/common": "2.2.1",
+    "@angular/compiler": "2.2.1",
+    "@angular/compiler-cli": "2.2.1",
+    "@angular/core": "2.2.1",
+    "@angular/forms": "2.2.1",
+    "@angular/http": "2.2.1",
+    "@angular/platform-browser": "2.2.1",
+    "@angular/platform-browser-dynamic": "2.2.1",
+    "@angular/platform-server": "2.2.1",
+    "@ionic/storage": "1.1.7",
+    "feathers-client": "^1.8.0",
+    "ionic-angular": "2.0.0-rc.4",
+    "ionic-native": "2.2.11",
+    "ionicons": "3.0.0",
+    "rxjs": "5.0.0-beta.12",
+    "socket-io": "^1.0.0",
+    "socket.io": "^1.7.2",
+    "zone.js": "0.6.26"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "0.15.10",
-    "del": "2.2.0",
-    "gulp": "3.9.1",
-    "gulp-watch": "4.3.5",
-    "ionic-gulp-fonts-copy": "^1.0.0",
-    "ionic-gulp-html-copy": "^1.0.0",
-    "ionic-gulp-sass-build": "^1.0.0",
-    "ionic-gulp-webpack-build": "^1.0.0",
-    "strip-sourcemap-loader": "0.0.1",
-    "typescript": "1.8.7"
+    "@ionic/app-scripts": "0.0.47",
+    "typescript": "2.0.9"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
-    "cordova-plugin-console",
+    "cordova-plugin-splashscreen",
     "cordova-plugin-device",
+    "cordova-plugin-console",
     "ionic-plugin-keyboard",
     "cordova-plugin-statusbar",
-    "cordova-plugin-splashscreen"
+    "onesignal-cordova-plugin"
   ],
-  "cordovaPlatforms": [
-    "ios",
-    "android"
-  ]
+  "cordovaPlatforms": [],
+  "description": "test: An Ionic project"
 }

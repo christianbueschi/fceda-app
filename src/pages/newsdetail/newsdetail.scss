@@ -1,0 +1,21 @@
+.p-newsdetail {
+
+	&__image {
+
+	}
+
+	&__title {
+		@extend .t-title !optional;
+	}
+
+	&__date {
+		@extend .t-sub !optional;
+		color: $light;
+	}
+
+	&__content {
+		font-size: 1.6rem;
+		line-height: 2rem;
+	}
+
+}
