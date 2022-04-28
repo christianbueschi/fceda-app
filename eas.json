@@ -1,0 +1,14 @@
+{
+  "cli": {
+    "version": ">= 0.34.0"
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "christianbueschi@gmail.com",
+        "ascAppId": "535820427",
+        "appleTeamId": "A52PV9YU8M"
+      }
+    }
+  }
+}

@@ -3,30 +3,123 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { ColorSchemeName } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
+import GamesScreen from '../screens/GamesScreen';
+import LiveTickerScreen from '../screens/LiveTickerScreen';
+import NewsDetail from '../screens/NewsDetail';
+import NewsScreen from '../screens/NewsScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import TableScreen from '../screens/TableScreen';
+import TeamDetailScreen from '../screens/TeamDetailScreen';
+import TeamsScreen from '../screens/TeamsScreen';
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
+export default function Navigation({
+  colorScheme,
+}: {
+  colorScheme: ColorSchemeName;
+}) {
+  const [expoPushToken, setExpoPushToken] = useState<string>();
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef(null);
+  const responseListener = useRef(null);
+  const navigationRef = useRef(null);
+
+  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) =>
+      setExpoPushToken(token)
+    );
+
+    // This listener is fired whenever a notification is received while the app is foregrounded
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        setNotification(notification);
+      });
+
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log('blbob');
+        navigationRef.current?.navigate('Liveticker');
+      });
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
   return (
     <NavigationContainer
+      ref={navigationRef}
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+    >
       <RootNavigator />
     </NavigationContainer>
   );
+}
+
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Device.isDevice) {
+    const { status: existingStatus } =
+      await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log(token);
+  } else {
+    console.log('Must use physical device for Push Notifications');
+  }
+
+  // if (Platform.OS === 'android') {
+  //   Notifications.setNotificationChannelAsync('default', {
+  //     name: 'default',
+  //     importance: Notifications.AndroidImportance.MAX,
+  //     vibrationPattern: [0, 250, 250, 250],
+  //     lightColor: '#FF231F7C',
+  //   });
+  // }
+
+  return token;
 }
 
 /**
@@ -38,10 +131,29 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen
+        name='Root'
+        component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='NotFound'
+        component={NotFoundScreen}
+        options={{ title: 'Oops!' }}
+      />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name='NewsDetail'
+          component={NewsDetail}
+          options={{ headerShown: false }}
+        />
+      </Stack.Group>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen
+          name='TeamDetailScreen'
+          component={TeamDetailScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -58,38 +170,63 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName='News'
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
+      }}
+    >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
+        name='News'
+        component={NewsScreen}
+        options={({ navigation }: RootTabScreenProps<'News'>) => ({
+          title: 'News',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon family='ionicons' name='reader-outline' color={color} />
           ),
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name='Table'
+        component={TableScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Tabelle',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name='table' family='fontawesome' color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name='Games'
+        component={GamesScreen}
+        options={{
+          title: 'Spiele',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon family='ionicons' name='football' color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name='Team'
+        component={TeamsScreen}
+        options={{
+          title: 'Team',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon family='ionicons' name='people-sharp' color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name='Liveticker'
+        component={LiveTickerScreen}
+        options={{
+          title: 'Liveticker',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon
+              family='ionicons'
+              name='ios-flash-outline'
+              color={color}
+            />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -100,8 +237,17 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof Ionicons | typeof FontAwesome>['name'];
   color: string;
+  family: 'ionicons' | 'fontawesome';
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <>
+      {props.family === 'ionicons' ? (
+        <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />
+      ) : (
+        <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />
+      )}
+    </>
+  );
 }
