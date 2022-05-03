@@ -14,24 +14,12 @@ const TableScreen = () => {
   const getData = async () => {
     setIsLoading(true);
     const data = await fetch(
-      'https://0ndywq9292.execute-api.eu-central-1.amazonaws.com/prod/aws-nodejs-dev-getTable'
+      'https://us-central1-fc-eda-liveticker.cloudfunctions.net/getTable'
     );
 
     const json = await data.json();
-    if (!json?.selection1) {
-      setIsLoading(false);
-      return;
-    }
 
-    const chunkSize = 12;
-    const formattedData = [];
-
-    for (let i = 0; i < json?.selection1.length; i += chunkSize) {
-      const chunk = json?.selection1.slice(i, i + chunkSize);
-      formattedData.push(chunk);
-    }
-
-    setContent(formattedData);
+    setContent(json);
     setIsLoading(false);
   };
 

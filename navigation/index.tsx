@@ -67,7 +67,6 @@ export default function Navigation({
     // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log('blbob');
         navigationRef.current?.navigate('Liveticker');
       });
 
@@ -105,7 +104,6 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
   } else {
     console.log('Must use physical device for Push Notifications');
   }

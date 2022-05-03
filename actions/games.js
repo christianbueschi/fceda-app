@@ -3,13 +3,12 @@ export const getGames = () => {
     dispatch(gamesFetchDataIsLoading());
 
     return fetch(
-      'https://0ndywq9292.execute-api.eu-central-1.amazonaws.com/prod/aws-nodejs-dev-getGames'
+      'https://us-central1-fc-eda-liveticker.cloudfunctions.net/getGames'
     )
       .then((response) => {
         return response.json();
       })
       .then((json) => {
-        console.log('🚀 ~ file: games.js ~ line 10 ~ .then ~ json', json);
         dispatch(gamesFetchDataSuccess(json));
         if (json.length > 0) dispatch(nextGameFetchDataSucces(json));
       })

@@ -18,6 +18,7 @@ import LivetickerResult from '../components/livetickerResult';
 import { Game } from '../components/game';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../actions/games';
+import { getLiveticker } from '../actions/liveticker';
 
 moment.locale('de');
 
@@ -32,6 +33,7 @@ const NewsScreen = (props) => {
 
   useEffect(() => {
     dispatch(getGames());
+    dispatch(getLiveticker());
   }, []);
 
   const game = useSelector((state) => state.game);
